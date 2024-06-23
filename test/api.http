@@ -1,0 +1,43 @@
+GET http://localhost:3000/users
+
+###
+// Usuario Comum
+POST http://localhost:3000/common/user
+Content-Type: application/json
+
+{
+    "name": "Pedro Sauro",
+    "email": "pedrosauro2@common.com",
+    "password": "123456"
+}
+
+###
+// Usuario Parceiro
+POST http://localhost:3000/partner/user
+Content-Type: application/json
+
+{
+    "name": "Pedro Sauro",
+    "email": "pedrosauro2@parceiro.com",
+    "password": "123456"
+}
+
+###
+// Gerar token para autenticação
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "pedrosauro2@parceiro.com",
+    "password": "123456"
+}
+
+###
+// Partner
+POST http://localhost:3000/partners
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6IlBlZHJvIFNhdXJvIiwiZW1haWwiOiJwZWRyb3NhdXJvMkBwYXJjZWlyby5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjQtMDYtMjNUMTk6NTk6MTEuMzcyWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDYtMjNUMTk6NTk6MTEuMzcyWiIsImlhdCI6MTcxOTE4MTk4OSwiZXhwIjoxNzE5MTkxOTg5fQ.0_qBmJW_JNjBB54-JMnadSvmXC0Yo2vmfcuLPKMXXLs
+
+{
+    "name": "partner 1"
+}
