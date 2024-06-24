@@ -1,18 +1,20 @@
-GET http://localhost:3000/users
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlBlZHJvIFNhdXJvIiwiZW1haWwiOiJwZWRyb3NhdXJvMUBwYXJjZWlyby5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjQtMDYtMjRUMTQ6NDQ6MDkuNzQyWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDYtMjRUMTQ6NDQ6MDkuNzQyWiIsImlhdCI6MTcxOTI0NDc0MSwiZXhwIjoxNzE5MjU0NzQxfQ.IWA1FsQK0sd2Qck05Y6g_zCykfl4Wp050qkWSLz31e4
 
 ###
-// Usuario Comum
+GET http://localhost:3000/users
+
+### Usuario Comum
 POST http://localhost:3000/common/user
 Content-Type: application/json
 
 {
     "name": "Pedro Sauro",
-    "email": "pedrosauro2@common.com",
+    "email": "pedrosauro3@common.com",
     "password": "123456"
 }
+### 
 
-###
-// Usuario Parceiro
+# Usuario Parceiro
 POST http://localhost:3000/partner/user
 Content-Type: application/json
 
@@ -22,22 +24,46 @@ Content-Type: application/json
     "password": "123456"
 }
 
-###
-// Gerar token para autenticação
-POST http://localhost:3000/auth/login
+### 
+# Login
+# @name login
+POST http://localhost:3000/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "pedrosauro2@parceiro.com",
+    "email": "pedrosauro1@parceiro.com",
     "password": "123456"
 }
 
-###
-// Partner
+### 
+
+# Partner
 POST http://localhost:3000/partners
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6IlBlZHJvIFNhdXJvIiwiZW1haWwiOiJwZWRyb3NhdXJvMkBwYXJjZWlyby5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjQtMDYtMjNUMTk6NTk6MTEuMzcyWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDYtMjNUMTk6NTk6MTEuMzcyWiIsImlhdCI6MTcxOTE4MTk4OSwiZXhwIjoxNzE5MTkxOTg5fQ.0_qBmJW_JNjBB54-JMnadSvmXC0Yo2vmfcuLPKMXXLs
+Authorization: Bearer {{authToken}}
 
 {
-    "name": "partner 1"
+    "name": "partner 3"
 }
+
+### 
+# Get all Partners
+GET http://localhost:3000/partners HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+# Cria Evento
+POST http://localhost:3000/events
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "Evento 01",
+    "description": "Evento 01",
+    "date": "2024-06-24T10:29:31.60"
+}
+
+### 
+GET http://localhost:3000/events
+Authorization: Bearer {{authToken}}

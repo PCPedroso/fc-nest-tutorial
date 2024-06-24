@@ -32,6 +32,7 @@ model Partner {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   PartnerUser PartnerUser[]
+  Event Event[]
 }
 
 model PartnerUser {
@@ -45,4 +46,17 @@ model PartnerUser {
   User User @relation(fields: [userId], references: [id])
 
   @@unique([userId])
+}
+
+model Event {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  date DateTime
+  partnerId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Partner Partner @relation(fields: [partnerId], references: [id])
 }
